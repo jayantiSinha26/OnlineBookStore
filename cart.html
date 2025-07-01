@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Haven - Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cart-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            padding: 40px 30px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 18px 0;
+        }
+        .cart-item:last-child { border-bottom: none; }
+        .cart-cover {
+            width: 60px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 18px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+        }
+        .cart-info h5 {
+            margin-bottom: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .cart-info p {
+            margin-bottom: 2px;
+            font-size: 0.95rem;
+            color: #888;
+        }
+        .cart-qty {
+            width: 60px;
+            margin: 0 10px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        .cart-remove {
+            color: #e74c3c;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .payment-options {
+            margin-top: 30px;
+        }
+        .payment-btn {
+            margin: 0 10px 10px 0;
+            min-width: 120px;
+        }
+        .payment-success {
+            color: #27ae60;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        @media (max-width: 991px) {
+            .cart-container { padding: 20px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2c3e50;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-book-reader mr-2"></i>Book Haven</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home mr-1"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html"><i class="fas fa-book mr-1"></i>Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="collection.html"><i class="fas fa-th mr-1"></i>Collection</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="cart.html"><i class="fas fa-shopping-cart mr-1"></i>Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="orders.html"><i class="fas fa-box mr-1"></i>My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt mr-1"></i>Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="cart-container">
+            <h2 class="mb-4"><i class="fas fa-shopping-cart mr-2"></i>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total" id="cart-total"></div>
+            <button class="btn btn-primary btn-lg mt-3" id="buy-now-btn">Buy Now</button>
+            <div class="payment-options d-none" id="payment-options">
+                <h5 class="mb-3">Choose Payment Method:</h5>
+                <button class="btn btn-outline-dark payment-btn" id="pay-paypal"><i class="fab fa-cc-paypal mr-1"></i>PayPal</button>
+                <button class="btn btn-outline-primary payment-btn" id="pay-stripe"><i class="fab fa-cc-stripe mr-1"></i>Stripe</button>
+                <button class="btn btn-outline-success payment-btn" id="pay-razorpay"><i class="fas fa-university mr-1"></i>Razorpay</button>
+                <div class="payment-success d-none" id="payment-success">Payment Successful! Thank you for your purchase.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Book Haven. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html> 

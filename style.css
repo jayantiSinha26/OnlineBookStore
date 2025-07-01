@@ -1,0 +1,458 @@
+/* Global Styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #2c3e50;
+    --light-bg: #f8f9fa;
+    --dark-bg: #1a252f;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Enhanced Navbar Styles */
+.navbar {
+    background-color: var(--primary-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1rem 0;
+}
+
+.navbar.scrolled {
+    background-color: rgba(44, 62, 80, 0.95);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 0.5rem 0;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.8) !important;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Enhanced Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8));
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+}
+
+/* Enhanced Book Cards */
+.book-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.book-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.book-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.book-card:hover .book-image {
+    transform: scale(1.1);
+}
+
+.book-info {
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.price-tag {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.book-card:hover .price-tag {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* Enhanced Category Cards */
+.category-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.category-card:hover::before {
+    transform: translateX(0);
+}
+
+.category-card:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.category-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--secondary-color);
+}
+
+/* Enhanced Newsletter Section */
+.newsletter-section {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
+    animation: backgroundMove 20s linear infinite;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+.newsletter-form .form-control {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 30px 0 0 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.newsletter-form .btn {
+    border-radius: 0 30px 30px 0;
+    padding: 15px 30px;
+    background: white;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.newsletter-form .btn:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Enhanced Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: white;
+    padding: 80px 0 20px;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.footer-links h5 {
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-links h5::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.footer-links:hover h5::after {
+    width: 100px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.social-icons a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Custom Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+    }
+    
+    .book-card {
+        margin-bottom: 20px;
+    }
+    
+    .category-card {
+        margin-bottom: 20px;
+    }
+    
+    .newsletter-form {
+        padding: 0 20px;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Best Sellers Section */
+.best-sellers {
+    background-color: var(--light-bg);
+    padding: 80px 0;
+}
+
+.best-seller-card {
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.best-seller-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.best-seller-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.best-seller-card:hover img {
+    transform: scale(1.05);
+}
+
+.best-seller-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.best-seller-card:hover .best-seller-info {
+    transform: translateY(-10px);
+}
+
+.best-seller-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.best-seller-info p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.best-seller-info .btn {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.best-seller-info .btn:hover {
+    background-color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+/* Add image hover effects */
+.book-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.book-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.book-card:hover .book-image::after {
+    opacity: 1;
+}
+
+/* Add responsive styles for best sellers */
+@media (max-width: 768px) {
+    .best-seller-card img {
+        height: 300px;
+    }
+    
+    .best-seller-info {
+        padding: 20px;
+    }
+    
+    .best-seller-info h3 {
+        font-size: 1.5rem;
+    }
+} 

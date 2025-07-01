@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Haven - My Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .orders-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+            padding: 40px 30px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+        .order-block {
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        .order-block:last-child { border-bottom: none; }
+        .order-date {
+            font-size: 1.1rem;
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .order-item:last-child { border-bottom: none; }
+        .order-cover {
+            width: 60px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 18px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+        }
+        .order-info h5 {
+            margin-bottom: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .order-info p {
+            margin-bottom: 2px;
+            font-size: 0.95rem;
+            color: #888;
+        }
+        .order-qty {
+            font-size: 1rem;
+            margin-left: 10px;
+            color: #2c3e50;
+        }
+        .order-price {
+            font-size: 1rem;
+            margin-left: 20px;
+            color: #27ae60;
+            font-weight: 500;
+        }
+        @media (max-width: 991px) {
+            .orders-container { padding: 20px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2c3e50;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-book-reader mr-2"></i>Book Haven</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home mr-1"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html"><i class="fas fa-book mr-1"></i>Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="collection.html"><i class="fas fa-th mr-1"></i>Collection</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart mr-1"></i>Cart</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="orders.html"><i class="fas fa-box mr-1"></i>My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt mr-1"></i>Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="orders-container">
+            <h2 class="mb-4"><i class="fas fa-box mr-2"></i>My Orders</h2>
+            <div id="orders-list"></div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Book Haven. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="orders.js"></script>
+</body>
+</html> 

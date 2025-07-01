@@ -1,0 +1,838 @@
+<!--CREATE A LOGIN PAGE  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Haven - Your Literary Paradise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #2c3e50;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 1rem 0;
+        }
+        .navbar.scrolled {
+            background-color: rgba(44, 62, 80, 0.95);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8));
+            animation: gradientShift 10s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Featured Books Section */
+        .featured-books {
+            padding: 80px 0;
+        }
+        .book-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .book-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .book-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .book-card:hover .book-image {
+            transform: scale(1.1);
+        }
+        .book-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .book-card:hover .book-image::after {
+            opacity: 1;
+        }
+        .book-info {
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .price-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .book-card:hover .price-tag {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        /* Categories Section */
+        .categories-section {
+            background-color: #2c3e50;
+            color: white;
+            padding: 80px 0;
+        }
+        .category-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .category-card:hover::before {
+            transform: translateX(0);
+        }
+        .category-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .category-card:hover .category-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--secondary-color);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: backgroundMove 20s linear infinite;
+        }
+        @keyframes backgroundMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+        .newsletter-form .form-control {
+            border: none;
+            padding: 15px 20px;
+            border-radius: 30px 0 0 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .newsletter-form .btn {
+            border-radius: 0 30px 30px 0;
+            padding: 15px 30px;
+            background: white;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .newsletter-form .btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        .footer-links h5 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        .footer-links:hover h5::after {
+            width: 100px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+            }
+            
+            .book-card {
+                margin-bottom: 20px;
+            }
+            
+            .category-card {
+                margin-bottom: 20px;
+            }
+            
+            .newsletter-form {
+                padding: 0 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Best Sellers Section */
+        .best-sellers {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .best-seller-card {
+            position: relative;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .best-seller-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .best-seller-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .best-seller-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .best-seller-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .best-seller-card:hover .best-seller-info {
+            transform: translateY(-10px);
+        }
+
+        .best-seller-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .best-seller-info p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .best-seller-info .btn {
+            background-color: var(--secondary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .best-seller-info .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Animation -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-book-reader mr-2"></i>Book Haven</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home mr-1"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html"><i class="fas fa-book mr-1"></i>Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="collection.html"><i class="fas fa-th mr-1"></i>Collection</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart mr-1"></i>Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="orders.html"><i class="fas fa-box mr-1"></i>My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt mr-1"></i>Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+    <div class="container">
+        <div class="row">
+                <div class="col-md-8" data-aos="fade-right">
+                    <h1 class="display-4 mb-4">Discover Your Next Favorite Book</h1>
+                    <p class="lead mb-4">Explore our vast collection of books from best-selling authors and emerging writers.</p>
+                    <a href="collection.html" class="btn btn-primary btn-lg">Browse Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books Section -->
+    <section class="featured-books">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Featured Books</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>The Great Adventure</h4>
+                            <p class="text-muted">By John Smith</p>
+                            <span class="price-tag">$19.99</span>
+                            <button class="btn btn-outline-primary float-right">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Mystery of the Night</h4>
+                            <p class="text-muted">By Sarah Johnson</p>
+                            <span class="price-tag">$24.99</span>
+                            <button class="btn btn-outline-primary float-right">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Future World</h4>
+                            <p class="text-muted">By Michael Brown</p>
+                            <span class="price-tag">$29.99</span>
+                            <button class="btn btn-outline-primary float-right">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Love Stories</h4>
+                            <p class="text-muted">By Emily Davis</p>
+                            <span class="price-tag">$21.99</span>
+                            <button class="btn btn-outline-primary float-right">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Science Today</h4>
+                            <p class="text-muted">By Robert Wilson</p>
+                            <span class="price-tag">$27.99</span>
+                            <button class="btn btn-outline-primary float-right">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>History Unveiled</h4>
+                            <p class="text-muted">By Anna Lee</p>
+                            <span class="price-tag">$22.99</span>
+                            <button class="btn btn-outline-primary float-right">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Browse by Category</h2>
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#fiction-section" style="text-decoration:none;color:inherit;">
+                        <div class="category-card">
+                            <i class="fas fa-book category-icon"></i>
+                            <h4>Fiction</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#science-section" style="text-decoration:none;color:inherit;">
+                        <div class="category-card">
+                            <i class="fas fa-flask category-icon"></i>
+                            <h4>Science</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#history-section" style="text-decoration:none;color:inherit;">
+                        <div class="category-card">
+                            <i class="fas fa-history category-icon"></i>
+                            <h4>History</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#romance-section" style="text-decoration:none;color:inherit;">
+                        <div class="category-card">
+                            <i class="fas fa-heart category-icon"></i>
+                            <h4>Romance</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Book Sections -->
+    <section id="fiction-section" class="py-5">
+        <div class="container">
+            <h3 class="mb-4">Fiction Books</h3>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>The Great Adventure</h4>
+                            <p class="text-muted">By John Smith</p>
+                            <span class="price-tag">$19.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Into the Wild</h4>
+                            <p class="text-muted">By Mark Green</p>
+                            <span class="price-tag">$18.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="science-section" class="py-5">
+        <div class="container">
+            <h3 class="mb-4">Science Books</h3>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Science Today</h4>
+                            <p class="text-muted">By Robert Wilson</p>
+                            <span class="price-tag">$27.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Future Science</h4>
+                            <p class="text-muted">By Ethan Clark</p>
+                            <span class="price-tag">$25.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="history-section" class="py-5">
+        <div class="container">
+            <h3 class="mb-4">History Books</h3>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>History Unveiled</h4>
+                            <p class="text-muted">By Anna Lee</p>
+                            <span class="price-tag">$22.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Future World</h4>
+                            <p class="text-muted">By Michael Brown</p>
+                            <span class="price-tag">$29.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="romance-section" class="py-5">
+        <div class="container">
+            <h3 class="mb-4">Romance Books</h3>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Love Stories</h4>
+                            <p class="text-muted">By Emily Davis</p>
+                            <span class="price-tag">$21.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="book-image" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="book-info">
+                            <h4>Starlit Nights</h4>
+                            <p class="text-muted">By Olivia Brown</p>
+                            <span class="price-tag">$23.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section: Best Sellers -->
+    <section class="best-sellers py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Best Sellers</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="best-seller-card">
+                        <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Best Seller" class="img-fluid rounded">
+                        <div class="best-seller-info">
+                            <h3>Book of the Month</h3>
+                            <p>Discover our most popular book this month</p>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#learnMoreModal">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="best-seller-card">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="New Release" class="img-fluid rounded">
+                        <div class="best-seller-info">
+                            <h3>New Release</h3>
+                            <p>Check out our latest addition to the collection</p>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#learnMoreModalNewRelease">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center" data-aos="fade-up">
+        <h2 class="mb-4">Subscribe to Our Newsletter</h2>
+        <p class="mb-4">Stay updated with our latest releases and exclusive offers!</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your email" id="newsletterEmail" required />
+            <div class="input-group-append">
+              <button class="btn btn-light" type="submit">Subscribe</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent form from submitting and reloading the page
+    
+    const emailInput = document.getElementById('newsletterEmail');
+    
+    if (emailInput.value.trim() === '') {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    
+    // Show the thank you popup message
+    alert('Thank you for subscribing! We will update you with the latest books.');
+    
+    // Clear the input field after subscription
+    emailInput.value = '';
+  });
+</script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-links">
+                    <h5>About Us</h5>
+                    <p>Book Haven is your one-stop destination for all your reading needs. We offer a wide selection of books across various genres.</p>
+                </div>
+                <div class="col-md-4 footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="collection.html">Collections</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                </ul>
+                </div>
+                <div class="col-md-4 footer-links">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Book Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Learn More Modal -->
+    <div class="modal fade" id="learnMoreModal" tabindex="-1" role="dialog" aria-labelledby="learnMoreModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="learnMoreModalLabel">About This Book</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>This book has been a favorite among readers for its compelling narrative and unforgettable characters. It explores themes of adventure, courage, and the human spirit in a way that resonates with audiences of all ages.</p>
+            <p>Whether you're a long-time fan of the genre or new to this type of story, you'll find something to love in these pages. Dive in and discover why this book is considered a must-read by so many!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learn More Modal for New Release -->
+    <div class="modal fade" id="learnMoreModalNewRelease" tabindex="-1" role="dialog" aria-labelledby="learnMoreModalNewReleaseLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="learnMoreModalNewReleaseLabel">About the New Release</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>This new release is already making waves in the literary world. With its fresh perspective and engaging storytelling, it promises to captivate readers from the very first page.</p>
+            <p>Don't miss out on the opportunity to be among the first to experience this exciting addition to our collection. Add it to your reading list today and join the conversation!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
